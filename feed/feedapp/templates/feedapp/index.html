@@ -1,0 +1,68 @@
+{% extends 'feedapp/base.html' %}
+{% load humanize %}
+
+{% block title %}Home{% endblock %}
+
+{% block main_title %}Public Feed{% endblock %}
+
+{% block sub_title %}Leave a message for everyone to see!{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<form method="POST">
+  <article class="media">
+    <div class="media-content">
+      <div class="field">
+        <p class="control">
+          {% csrf_token %}
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              {{ form.text }}
+            </div>
+            <div class="control">
+              <button class="button is-info">Submit</button>
+            </div>
+          </div>
+        </p>
+      </div>
+    </div>
+  </article>
+</form>
+{% endif %}
+
+{% if posts %}
+  {% for post in posts %}
+    <article class="media mt-5">
+      <div class="media-content">
+        <div class="content">
+          <p>
+            <strong>{{ post.user.first_name }} {{ post.user.last_name }}</strong> 
+            <small>{{ post.date_posted|naturaltime }}</small> 
+            <br>
+            {{ post.text }}
+          </p>
+        </div>
+      </div>
+      {% if post.user == request.user %}
+        <div class="media-right">
+          <a href="{% url 'delete_post' post.id %}" class="delete"></a>
+        </div>
+      {% elif user.is_authenticated %}
+        <div class="media-right">
+          <a href="{% url 'report_post' post.id %}"><span class="tag is-warning">report</span></a>
+        </div>
+      {% endif %}
+   </article>
+  {% endfor %}
+{% else %}
+  <article class="media">
+    <div class="media-content">
+      <div class="content has-text-centered">
+        <p>There are no posts.</p>
+      </div>
+    </div>
+  </article>
+{% endif %}
+
+{% endblock %}

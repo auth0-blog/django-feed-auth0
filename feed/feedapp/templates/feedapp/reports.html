@@ -1,0 +1,32 @@
+{% extends 'feedapp/base.html' %}
+{% load humanize %}
+
+{% block title %}Reported Posts{% endblock %}
+{% block main_title %}Reported Posts{% endblock %}
+
+{% block content %}
+
+{% for post in reports %}
+  <article class="media">
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong>{{ post.user.first_name }} {{ post.user.last_name }}</strong> 
+          <small>{{ post.date_posted|naturaltime }}</small>
+          {% if post.user.is_active %}
+            <a href="{% url 'block_user' post.user.id %}"><span class="tag is-warning">Block</span></a>
+          {% endif %}
+          <br>
+          {{ post.text }} - Times reported: {{ post.times_reported }}
+        </p> 
+      </div>
+    </div>
+    {% if not post.hidden %}
+      <div class="media-right">
+        <a href="{% url 'hide_post' post.id %}" class="delete"></a>
+      </div>
+    {% endif %}
+  </article>
+{% endfor %}
+
+{% endblock %}
