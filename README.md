@@ -1,4 +1,4 @@
-This application is based on [this Django authentication tutorial](blog/django-authentication/) where you learn how to create a public feed application, add authentication, and add moderator permissions.
+This application is based on [this Django authentication tutorial](https://auth0.com/blog/django-authentication/) where you learn how to create a public feed application, add authentication, and add moderator permissions.
 
 ![Django public feed app](https://cdn.auth0.com/blog/django-authentication/django-public-feed.png)
 
