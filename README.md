@@ -26,5 +26,5 @@ You can find the location of those values in your Auth0 dashboard. For more deta
 Finally, run the application:
 
 ```bash
-python manage.py startapp feedapp
+python manage.py runserver
 ```
