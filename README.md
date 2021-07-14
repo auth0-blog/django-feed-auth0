@@ -23,8 +23,22 @@ Then, you need to update your `settings.py` file with your own Auth0 values. You
 
 You can find the location of those values in your Auth0 dashboard. For more details, please see the ["Adding Authentication" section of the tutorial](https://auth0.com/blog/django-authentication#adding-authentication).
 
+
+Migrate the application:
+
+```shell script
+cd feed
+python manage.py migrate
+```
+
+Create a superuser:
+
+```shell script
+python manage.py createsuperuser
+```
+
 Finally, run the application:
 
 ```bash
-python manage.py startapp feedapp
+python manage.py runserver
 ```
