@@ -3,12 +3,11 @@ certifi==2020.6.20
 cffi==1.14.2
 chardet==3.0.4
 cryptography==3.0
-defusedxml==0.7.0rc1
+defusedxml==0.7.1
 Django==3.1
 ecdsa==0.14.1
 idna==2.10
 oauthlib==3.1.0
-pkg-resources==0.0.0
 pyasn1==0.4.8
 pycparser==2.20
 PyJWT==1.7.1
